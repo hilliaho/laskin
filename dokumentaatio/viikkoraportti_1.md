@@ -1,10 +1,14 @@
 # Viikkoraportti 1
 
-Tällä viikolla olen päättänyt projektin aiheen ja tutustunut shunting-yard -algoritmiin. 
+Tällä viikolla olen päättänyt projektin aiheen ja tutustunut shunting yard -algoritmiin. 
 Olen luonut projektille repositorion ja ottanut versionhallinnan käyttöön. 
 Lisäksi olen kirjoittanut määrittelydokumentin.
 
-Eniten vaikeuksia tuotti Git ja sen kertaaminen miten sitä käytetään ja SSH-avaimen saaminen toimimaan, mutta se onnistui onneksi.
-Aiheen valitseminen vei ehkä eniten aikaa, samoin kurssin yleisten ohjeiden lukeminen. 
+Opin tällä viikolla, miten shunting yard -algoritmi toimii, sekä palautin mieleen Ohjelmistotekniikka-kurssilla opittuja asioita projektin luomisesta ja versionhallinnasta.
 
-Projektiin on käytetty aikaa tällä viikolla 5 tuntia
+Eniten vaikeuksia tuotti Git ja sen kertaaminen miten sitä käytetään ja SSH-avaimen saaminen toimimaan, mutta se onnistui onneksi.
+Eniten aikaa meni silti aiheen valitsemiseen, sillä aihe-ehdotuksia oli paljon ja monet niistä olivat kiinnostavia.
+
+Seuraavaksi aion aloittaa ohjelman koodin kirjoittamisen ja yksikkötestauksen.
+
+Projektiin on käytetty aikaa tällä viikolla 6 tuntia.
