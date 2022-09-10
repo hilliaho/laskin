@@ -1,1 +1,1 @@
-# laskin
+# Tieteellinen laskin
