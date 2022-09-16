@@ -41,10 +41,13 @@ class Laskin():
                 pino.pop()
 
             elif operandi == "+" or operandi == "-":
-                if len(pino) > 0:
-                    while pino[-1] == "*" or pino[-1] == "/":
-                        jono.append(pino[-1])
-                        pino.pop()
+                while True:
+                    if len(pino) == 0:
+                        break
+                    if pino[-1] != "*" and pino[-1] != "/":
+                        break
+                    jono.append(pino[-1])
+                    pino.pop()
                 pino.append(operandi)
 
             elif operandi == "*" or operandi == "/":
