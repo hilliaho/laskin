@@ -34,3 +34,4 @@ class TestiLaskin(unittest.TestCase):
         lauseke = self.laskin._shunting_yard("3*1+4/2-(1+2)")
         tulos = self.laskin._laske(lauseke)
         self.assertEqual(tulos, 2.0)
+        
