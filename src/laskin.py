@@ -1,16 +1,33 @@
 from kayttoliittyma import Kayttoliittyma
 
 class Laskin():
+    """Luokka, joka vastaa laskimen sovelluslogiikasta
+    """
 
     def __init__(self):
+        """Luokan konstruktori
+        """
         self.kayttoliittyma = Kayttoliittyma()
 
     def aloita(self):
-        lauseke = self.kayttoliittyma.syote()
-        postfix_lauseke = self._shunting_yard(lauseke)
-        self.kayttoliittyma.tulos(self._laske(postfix_lauseke))
+        """Pyörittää laskimen toimintaa silmukan avulla
+        """
+        while True:
+            lauseke = self.kayttoliittyma.syote()
+            if lauseke == "-1":
+                break
+            postfix_lauseke = self._shunting_yard(lauseke)
+            self.kayttoliittyma.tulos(self._laske(postfix_lauseke))
 
     def _shunting_yard(self, lauseke):
+        """Muuntaa lausekkeen shunting yard -algoritmin avulla postfix-muotoon
+
+        Args:
+            lauseke (merkkijono): Muunnettava lauseke
+
+        Returns:
+            jono (lista): Postfix-muotoon muunnettu matemaattinen lauseke
+        """
         pino = []
         jono = []
         for operandi in lauseke:
@@ -47,6 +64,14 @@ class Laskin():
         return jono
 
     def _laske(self, lauseke):
+        """Laskee matemaattisen lausekkeen arvon
+
+        Args:
+            lauseke (lista): matemaattinen lauseke
+
+        Returns:
+            tulos (liukuluku): laskettu lausekkeen arvo
+        """
         pino = []
         for operandi in lauseke:
             if operandi == "+" or operandi == "-" or operandi == "*" or operandi == "/":
@@ -64,6 +89,7 @@ class Laskin():
                 elif operandi == "/":
                     tulos = toka / eka
                     pino.append(tulos)
-            else: pino.append(int(operandi))
+            else: 
+                pino.append(float(operandi))
 
-        return pino
+        return pino[-1]
