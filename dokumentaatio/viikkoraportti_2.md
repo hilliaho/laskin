@@ -9,7 +9,8 @@ Eniten vaikeuksia tuotti shunting yard -algoritmin ja postfix-notaatioon muunnet
 
 Tällä viikolla olen taas kerrannut asioita Ohjelmistotekniikka-kurssilta, kuten testaamista ja koodin laadun seuraamista. 
 
-Seuraavaksi aion parantaa laskimen toimintaa niin, että se toimii myös luvuille, jotka ovat pidempiä kuin 1 merkki. 
+Seuraavaksi aion parantaa koodin rakennetta niin, että se täyttää koodin laatuvaatimukset. 
+Aion kehittää laskimen toimintaa niin, että se toimii myös luvuille, jotka ovat pidempiä kuin 1 merkki. 
 Aion myös lisätä mukaan ainakin potenssilaskun ja varautua tilanteisiin, joissa käyttäjä syöttää virheellisen lausekkeen.
 
 Projektiin on käytetty aikaa tällä viikolla 10 tuntia.
