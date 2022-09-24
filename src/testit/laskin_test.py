@@ -30,6 +30,11 @@ class TestiLaskin(unittest.TestCase):
         tulos = self.laskin._laske(lauseke)
         self.assertEqual(tulos, 2.0)
 
+    def testi_potenssilasku(self):
+        lauseke = self.laskin._shunting_yard("2^4")
+        tulos = self.laskin._laske(lauseke)
+        self.assertEqual(tulos, 16.0)
+
     def testi_laskujarjestys(self):
         lauseke = self.laskin._shunting_yard("3*1+4/2-(1+2)")
         tulos = self.laskin._laske(lauseke)
