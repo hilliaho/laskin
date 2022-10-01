@@ -8,8 +8,14 @@ class Muuttujat():
         arvo = float(lauseke[1])
         self.muuttujat[nimi] = arvo
 
+    def onko_muuttuja_olemassa(self, nimi):
+        if str(nimi) in self.muuttujat:
+            return True
+        return False
+
     def arvo(self, nimi):
         if str(nimi) in self.muuttujat:
             return self.muuttujat[nimi]
         else:
             print("muuttujaa ei löydy")
+            return False

@@ -38,7 +38,8 @@ class Laskutoimitukset():
             elif operandi[0] in self.numerot:
                 pino.append(float(operandi))
             elif operandi[0] in self.kirjaimet:
-                arvo = self.muuttujat.arvo(operandi)
-                pino.append(arvo)
-
+                if self.muuttujat.onko_muuttuja_olemassa(operandi)==False:
+                    return
+                else:
+                    pino.append(self.muuttujat.muuttujat[operandi])
         return pino[-1]
