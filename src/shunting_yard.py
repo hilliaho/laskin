@@ -2,6 +2,10 @@ class ShuntingYard():
     """Luokka, joka vastaa shunting yard -algoritmin toteuttamisesta
     """
 
+    def __init__(self, numerot, kirjaimet):
+        self.numerot = numerot
+        self.kirjaimet = kirjaimet
+
     def muunna(self, lauseke):
         """Muuntaa lausekkeen shunting yard -algoritmin avulla postfix-muotoon
 
@@ -15,20 +19,22 @@ class ShuntingYard():
         jono = []
         edellinen_operandi = ""
         for operandi in lauseke:
-            if operandi == "(":
+            if operandi == "(": #lisää pinoon
                 pino.append(operandi)
 
             elif operandi == ")":
-                while pino[-1] != "(":
+                while pino[-1] != "(":  #Lisää jonosta pinoon kaikki merkit niin kauan että tulee sulku
                     jono.append(pino[-1])
                     pino.pop()
                 pino.pop()
 
-            elif operandi in ("+", "-"):
+            elif operandi in ("+", "-"):   #Poista pinosta merkit *, /, ^
+                if operandi == "-" and edellinen_operandi not in self.numerot:
+                    jono.append("0")
                 while True:
                     if len(pino) == 0:
                         break
-                    if pino[-1] not in ("*", "/", "^"):
+                    if pino[-1] not in ("+","-","*", "/", "^"):
                         break
                     jono.append(pino[-1])
                     pino.pop()
@@ -46,11 +52,20 @@ class ShuntingYard():
             elif operandi == "^":
                 pino.append(operandi)
 
-            elif operandi in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"):
-                if edellinen_operandi in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"):
+            elif operandi in self.numerot:
+                if edellinen_operandi in self.numerot:
                     jono[-1] += operandi
                 else:
                     jono.append(operandi)
+
+            elif operandi in self.kirjaimet:
+                if edellinen_operandi in self.kirjaimet:
+                    jono[-1] += operandi
+                else:
+                    jono.append(operandi)
+
+            else:
+                return ["0"]
 
             edellinen_operandi = operandi
 

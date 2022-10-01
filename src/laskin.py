@@ -11,23 +11,44 @@ class Laskin():
     def __init__(self):
         """Luokan konstruktori
         """
+        self.operaattorit=["+","-","*","/","^","=","(",")"]
+        self.numerot = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        self.kirjaimet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å", "a", "s",
+                          "d", "f", "g", "h", "j", "k", "l", "ö", "ä", "z", "x", "c", "v", "b", "n", "m"]
         self.kayttoliittyma = Kayttoliittyma()
-        self.laskutoimitukset = Laskutoimitukset()
-        self.shunting_yard = ShuntingYard()
         self.muuttujat = Muuttujat()
+        self.laskutoimitukset = Laskutoimitukset(self.muuttujat, self.numerot, self.kirjaimet)
+        self.shunting_yard = ShuntingYard(self.numerot, self.kirjaimet)
+        
 
     def aloita(self):
         """Pyörittää laskimen toimintaa silmukan avulla
         """
         while True:
             lauseke = self.kayttoliittyma.syote()
-            lauseke = lauseke.replace(" ","")
+            if self._tarkista(lauseke)==False:
+                continue
+            lauseke = lauseke.replace(" ", "")
             if lauseke == "-1":
                 break
             if "=" in lauseke:
                 self.muuttujat.lisaa_muuttuja(lauseke)
                 continue
             postfix_lauseke = self.shunting_yard.muunna(lauseke)
-            self.kayttoliittyma.tulos(self.laskutoimitukset.laske(postfix_lauseke))
+            self.kayttoliittyma.tulos(
+                self.laskutoimitukset.laske(postfix_lauseke))
 
-    
+    def _tarkista(self, lauseke):
+        """Tarkistaa, että lauseke on sääntöjen mukainen
+
+        Args:
+            lauseke (merkkijono): tarkistettava lauseke
+        """
+        for merkki in lauseke:
+            ok = False
+            if merkki in self.numerot or merkki in self.kirjaimet or merkki in self.operaattorit:
+                ok = True
+            if ok == False:
+                return False
+        return True
+
