@@ -9,3 +9,6 @@
 [Viikkoraportti 2](https://github.com/hilliaho/laskin/blob/main/dokumentaatio/viikkoraportti_2.md)
 
 [Viikkoraportti 3](https://github.com/hilliaho/laskin/blob/main/dokumentaatio/viikkoraportti_3.md)
+
+
+[Viikkoraportti 4](https://github.com/hilliaho/laskin/blob/main/dokumentaatio/viikkoraportti_4.md)
