@@ -1,4 +1,4 @@
 # Testausdokumentti
 
-![Testikattavuusraportti](./testikattavuus_laskin.png)
+![Testikattavuusraportti](./laskin_testikattavuus_2.png)
 
