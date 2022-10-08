@@ -18,9 +18,6 @@ class Laskutoimitukset():
         """
         try:
             pino = []
-            if len(lauseke)>2:
-                if lauseke[1] not in self.numerot:
-                    pino.append(0)
             for operandi in lauseke:
                 if operandi in ("+", "-", "*", "/", "^"):
                     eka = pino.pop()

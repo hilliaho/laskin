@@ -21,22 +21,23 @@ class ShuntingYard():
 
         try:
             for operandi in lauseke:
-                if operandi == "(": #lisää pinoon
+                if operandi == "(":  # lisää pinoon
                     pino.append(operandi)
 
                 elif operandi == ")":
-                    while pino[-1] != "(":  #Lisää jonosta pinoon kaikki merkit niin kauan että tulee sulku
+                    # Lisää jonosta pinoon kaikki merkit niin kauan että tulee sulku
+                    while pino[-1] != "(":
                         jono.append(pino[-1])
                         pino.pop()
                     pino.pop()
 
-                elif operandi in ("+", "-"):   #Poista pinosta merkit *, /, ^
+                elif operandi in ("+", "-"):  # Poista pinosta merkit *, /, ^
                     if operandi == "-" and edellinen_operandi not in self.numerot and edellinen_operandi not in self.kirjaimet:
                         jono.append("0")
                     while True:
                         if len(pino) == 0:
                             break
-                        if pino[-1] not in ("+","-","*", "/", "^"):
+                        if pino[-1] not in ("+", "-", "*", "/", "^"):
                             break
                         jono.append(pino[-1])
                         pino.pop()
@@ -74,6 +75,7 @@ class ShuntingYard():
             while len(pino) > 0:
                 jono.append(pino[-1])
                 pino.pop()
+            print(jono)
             return jono
         except:
             return ["0"]
