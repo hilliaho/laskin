@@ -2,6 +2,10 @@
 
 ## Ohjelman käynnistys
 
+Kloonaa projekti tietokoneellesi suorittamalla komentorivillä komento `git clone https://github.com/hilliaho/laskin` 
+
+Mene projektin hakemistoon `laskin`
+
 Asenna riippuvuudet komennolla `poetry install`
 
 Käynnistä sen jälkeen ohjelma komennolla `poetry run invoke start`
@@ -10,7 +14,7 @@ Käynnistä sen jälkeen ohjelma komennolla `poetry run invoke start`
 
 Kirjoita lauseke, jonka arvon haluat laskea ja paina Enter
 
-Voit käyttää omia muuttujia antamalla niille arvon `muuttujan_nimi=muuttujan_arvo`, esim. `x=5`
+Voit käyttää omia muuttujia antamalla niille ensin arvon  esim. `x=5` ja sitten käyttämällä niitä lausekkeissa esim. `2*x`
 
 Sulje ohjelma syötteellä `-1`
 
