@@ -2,6 +2,7 @@ from kayttoliittyma import Kayttoliittyma
 from laskutoimitukset import Laskutoimitukset
 from shunting_yard import ShuntingYard
 from muuttujat import Muuttujat
+from lausekkeen_tarkistus import LausekkeenTarkistus
 
 
 class Laskin():
@@ -19,6 +20,7 @@ class Laskin():
         self.muuttujat = Muuttujat()
         self.laskutoimitukset = Laskutoimitukset(self.muuttujat, self.numerot, self.kirjaimet)
         self.shunting_yard = ShuntingYard(self.numerot, self.kirjaimet)
+        self.lausekkeen_tarkistus = LausekkeenTarkistus(self.numerot, self.kirjaimet, self.operaattorit)
         
 
     def aloita(self):
@@ -26,7 +28,7 @@ class Laskin():
         """
         while True:
             lauseke = self.kayttoliittyma.syote()
-            if self._tarkista(lauseke)==False:
+            if self.lausekkeen_tarkistus.tarkista(lauseke)==False:
                 continue
             lauseke = lauseke.replace(" ", "")
             if lauseke == "-1":
@@ -38,17 +40,5 @@ class Laskin():
             self.kayttoliittyma.tulos(
                 self.laskutoimitukset.laske(postfix_lauseke))
 
-    def _tarkista(self, lauseke):
-        """Tarkistaa, että lauseke on sääntöjen mukainen
-
-        Args:
-            lauseke (merkkijono): tarkistettava lauseke
-        """
-        for merkki in lauseke:
-            ok = False
-            if merkki in self.numerot or merkki in self.kirjaimet or merkki in self.operaattorit:
-                ok = True
-            if ok == False:
-                return False
-        return True
+    
 

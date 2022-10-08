@@ -16,30 +16,33 @@ class Laskutoimitukset():
         Returns:
             tulos (liukuluku): laskettu lausekkeen arvo
         """
-        pino = []
-        if len(lauseke)>2:
-            if lauseke[1] not in self.numerot:
-                pino.append(0)
-        for operandi in lauseke:
-            if operandi in ("+", "-", "*", "/", "^"):
-                eka = pino.pop()
-                toka = pino.pop()
-                if operandi == "+":
-                    tulos = eka + toka
-                elif operandi == "-":
-                    tulos = toka - eka
-                elif operandi == "*":
-                    tulos = eka * toka
-                elif operandi == "/":
-                    tulos = toka / eka
-                elif operandi == "^":
-                    tulos = toka**eka
-                pino.append(tulos)
-            elif operandi[0] in self.numerot:
-                pino.append(float(operandi))
-            elif operandi[0] in self.kirjaimet:
-                if self.muuttujat.onko_muuttuja_olemassa(operandi)==False:
-                    return
-                else:
-                    pino.append(self.muuttujat.muuttujat[operandi])
-        return pino[-1]
+        try:
+            pino = []
+            if len(lauseke)>2:
+                if lauseke[1] not in self.numerot:
+                    pino.append(0)
+            for operandi in lauseke:
+                if operandi in ("+", "-", "*", "/", "^"):
+                    eka = pino.pop()
+                    toka = pino.pop()
+                    if operandi == "+":
+                        tulos = eka + toka
+                    elif operandi == "-":
+                        tulos = toka - eka
+                    elif operandi == "*":
+                        tulos = eka * toka
+                    elif operandi == "/":
+                        tulos = toka / eka
+                    elif operandi == "^":
+                        tulos = toka**eka
+                    pino.append(tulos)
+                elif operandi[0] in self.numerot:
+                    pino.append(float(operandi))
+                elif operandi[0] in self.kirjaimet:
+                    if self.muuttujat.onko_muuttuja_olemassa(operandi)==False:
+                        return
+                    else:
+                        pino.append(self.muuttujat.muuttujat[operandi])
+            return pino[-1]
+        except:
+            return "error"
