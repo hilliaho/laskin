@@ -1,10 +1,5 @@
 __pycache__
 .pytest_cache
-poetry.lock
-pyproject.toml
 src/.vscode/
-.pylintrc
 htmlcov
 .coverage
-.coveragerc
-src/testit/__init__.py
