@@ -32,5 +32,6 @@ Sulje ohjelma syötteellä `-1`
 
 [Viikkoraportti 3](https://github.com/hilliaho/laskin/blob/main/dokumentaatio/viikkoraportti_3.md)
 
-
 [Viikkoraportti 4](https://github.com/hilliaho/laskin/blob/main/dokumentaatio/viikkoraportti_4.md)
+
+[Viikkoraportti 5](https://github.com/hilliaho/laskin/blob/main/dokumentaatio/viikkoraportti_5.md)
