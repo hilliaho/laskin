@@ -16,4 +16,3 @@ class Kayttoliittyma():
             tulos (liukuluku): laskimella laskettu tulos
         """
         print(tulos)
-        

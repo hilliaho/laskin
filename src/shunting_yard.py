@@ -75,7 +75,6 @@ class ShuntingYard():
             while len(pino) > 0:
                 jono.append(pino[-1])
                 pino.pop()
-            print(jono)
             return jono
-        except:
+        except IndexError:
             return ["0"]
