@@ -16,6 +16,13 @@ class LausekkeenTarkistus():
         operaattoreita_perakkain = 0
         desimaalipisteet_lkm = 0
         sulut_lkm = 0
+        if "=" in lauseke:
+            lauseke=lauseke.split("=")
+            if lauseke[1]=="":
+                return False
+            for merkki in lauseke[1]:
+                if merkki not in self.numerot:
+                    return False
         for merkki in lauseke:
             if merkki not in self.numerot and merkki not in self.kirjaimet and merkki not in self.operaattorit:
                 return False
@@ -33,6 +40,8 @@ class LausekkeenTarkistus():
                 sulut_lkm += 1
             if merkki == ")":
                 sulut_lkm -= 1
+            if sulut_lkm < 0:
+                return False
         if sulut_lkm != 0:
             return False
         return True

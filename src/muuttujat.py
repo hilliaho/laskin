@@ -7,7 +7,6 @@ class Muuttujat():
         nimi = str(lauseke[0])
         arvo = float(lauseke[1])
         self.muuttujat[nimi] = arvo
-        print(self.muuttujat)
 
     def onko_muuttuja_olemassa(self, nimi):
         if str(nimi) in self.muuttujat:
