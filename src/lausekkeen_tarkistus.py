@@ -13,35 +13,66 @@ class LausekkeenTarkistus():
         Args:
             lauseke (merkkijono): tarkistettava lauseke
         """
-        operaattoreita_perakkain = 0
-        desimaalipisteet_lkm = 0
-        sulut_lkm = 0
         if "=" in lauseke:
-            lauseke=lauseke.split("=")
-            if lauseke[1]=="":
-                return False
-            for merkki in lauseke[1]:
-                if merkki not in self.numerot:
-                    return False
+            return self._tarkista_muuttujan_lisays(lauseke)
+        if not (self._tarkista_sulut(lauseke) and self._tarkista_desimaalipisteet(lauseke) and self._tarkista_operaattorien_jarjestys(lauseke)):
+            return False
+        return True
+
+    def _tarkista_operaattorien_jarjestys(self, lauseke):
+        lauseke = lauseke.replace("**", "^")
+        edellinen_merkki=""
         for merkki in lauseke:
             if merkki not in self.numerot and merkki not in self.kirjaimet and merkki not in self.operaattorit:
                 return False
-            if merkki in self.operaattorit:
-                operaattoreita_perakkain += 1
-                if operaattoreita_perakkain == 2:
+            if edellinen_merkki=="" or edellinen_merkki=="(":
+                if merkki == "." or not (merkki in self.kirjaimet or merkki in self.numerot or merkki =="(" or merkki =="-"):
                     return False
-            else:
-                operaattoreita_perakkain = 0
-            if merkki == ".":
-                desimaalipisteet_lkm += 1
-                if desimaalipisteet_lkm == 2:
+            elif edellinen_merkki == ")":
+                if merkki in self.numerot or merkki in self.kirjaimet or merkki == "(" or merkki == ".":
                     return False
-            if merkki == "(":
-                sulut_lkm += 1
-            if merkki == ")":
-                sulut_lkm -= 1
-            if sulut_lkm < 0:
+            elif edellinen_merkki in self.operaattorit:
+                if merkki == "." or not (merkki in self.kirjaimet or merkki in self.numerot or merkki =="(" ):
+                    return False
+            elif edellinen_merkki in self.numerot:
+                if merkki == "(":
+                    return False
+            edellinen_merkki = merkki
+        return True
+
+
+    def _tarkista_muuttujan_lisays(self, lauseke):
+        lauseke=lauseke.split("=")
+        nimi = lauseke[0]
+        arvo = lauseke[1]
+        if len(nimi)==0 or len(arvo)==0:
+            return False
+        for merkki in arvo:
+            if merkki not in self.numerot:
                 return False
-        if sulut_lkm != 0:
+        return True
+
+    def _tarkista_sulut(self, lauseke):
+        pino = []
+        for merkki in lauseke:
+            if merkki == "(":
+                pino.append("(")
+            elif merkki == ")":
+                if len(pino)==0:
+                    return False
+                pino.pop()
+        if len(pino) != 0:
             return False
         return True
+
+    def _tarkista_desimaalipisteet(self, lauseke):
+        desimaalipisteet=0
+        for merkki in lauseke:
+            if merkki not in self.numerot:
+                desimaalipisteet=0
+            if merkki == ".":
+                desimaalipisteet += 1
+            if desimaalipisteet > 1:
+                return False
+        return True
+

@@ -30,10 +30,11 @@ class Laskin():
         """
         while True:
             lauseke = self.kayttoliittyma.syote()
+            lauseke = lauseke.replace(" ", "")
+            lauseke = lauseke.replace("**", "^")
             if self.lausekkeen_tarkistus.tarkista(lauseke) is False:
                 print("virheellinen syöte")
                 continue
-            lauseke = lauseke.replace(" ", "")
             if lauseke == "-1":
                 break
             if "=" in lauseke:
