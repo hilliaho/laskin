@@ -14,10 +14,10 @@ class TestiLausekkeenTarkistus(unittest.TestCase):
             numerot, kirjaimet, operaattorit)
 
     def testi_hyvaksyttavat_lausekkeet(self):
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("1.234+2"), True)
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista("sin(1.234+2)"), True)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("7-8"), True)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("-(1+2)*5"), True)
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("9.345-2.2"), True)
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista("cos(9.345)-2.2"), True)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("-2**5"), True)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("-(1+(2*x)/6)-3"), True)
 

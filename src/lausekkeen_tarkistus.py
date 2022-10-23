@@ -15,11 +15,11 @@ class LausekkeenTarkistus():
         """
         if "=" in lauseke:
             return self._tarkista_muuttujan_lisays(lauseke)
-        if not (self._tarkista_sulut(lauseke) and self._tarkista_desimaalipisteet(lauseke) and self._tarkista_operaattorien_jarjestys(lauseke)):
+        if not (self._tarkista_sulut(lauseke) and self._tarkista_desimaalipisteet(lauseke) and self._tarkista_lausekkeen_jarjestys(lauseke)):
             return False
         return True
 
-    def _tarkista_operaattorien_jarjestys(self, lauseke):
+    def _tarkista_lausekkeen_jarjestys(self, lauseke):
         lauseke = lauseke.replace("**", "^")
         edellinen_merkki=""
         for merkki in lauseke:
