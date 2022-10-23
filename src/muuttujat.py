@@ -15,5 +15,4 @@ class Muuttujat():
     def arvo(self, nimi):
         if str(nimi) in self.muuttujat:
             return self.muuttujat[nimi]
-        print("muuttujaa ei löydy")
         return False

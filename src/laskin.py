@@ -29,12 +29,12 @@ class Laskin():
     def aloita(self):
         """Pyörittää laskimen toimintaa silmukan avulla
         """
-        
+        self.kayttoliittyma.alkuviesti()
         while True:
             self.muuttujat.lisaa_muuttuja(['pi', '=', str(math.pi)])
             lauseke = self.kayttoliittyma.syote()
             if self.lausekkeen_tarkistus.tarkista(lauseke) is False:
-                print("virheellinen syöte")
+                self.kayttoliittyma.virheviesti()
                 continue
             if lauseke == "-1":
                 break

@@ -6,6 +6,7 @@ class Kayttoliittyma():
         Returns:
             lauseke (merkkijono): käyttäjän antama syöte
         """
+        print("")
         lauseke = input("lauseke: ")
         return lauseke
 
@@ -16,4 +17,12 @@ class Kayttoliittyma():
             tulos (liukuluku): laskimella laskettu tulos
         """
         print(tulos)
-        print("")
+
+    def alkuviesti(self):
+        print("___________________________________", "\n")
+        print("Tervetuloa käyttämään laskinta")
+        print("Sulje ohjelma komennolla -1")
+        print("___________________________________")
+
+    def virheviesti(self):
+        print("virheellinen syöte")
