@@ -1,4 +1,8 @@
 # Testausdokumentti
 
-![Testikattavuusraportti](./laskin_testikattavuus_2.png)
+## Testikattavuusraportti
+
+![Testikattavuusraportti](./coverage-report.png)
+
+## Testaus
 
