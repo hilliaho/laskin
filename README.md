@@ -10,15 +10,10 @@ Asenna riippuvuudet komennolla `poetry install`
 
 Käynnistä sen jälkeen ohjelma komennolla `poetry run invoke start`
 
-## Laskimen käyttö
-
-Kirjoita lauseke, jonka arvon haluat laskea ja paina Enter
-
-Voit käyttää omia muuttujia antamalla niille ensin arvon  esim. `x=5` ja sitten käyttämällä niitä lausekkeissa esim. `2*x`
-
-Sulje ohjelma syötteellä `-1`
 
 ## Dokumentaatio
+
+[Käyttöohje](https://github.com/hilliaho/laskin/blob/main/dokumentaatio/kayttoohje.md)
 
 [Määrittelydokumentti](https://github.com/hilliaho/laskin/blob/main/dokumentaatio/maarittelydokumentti.md)
 
