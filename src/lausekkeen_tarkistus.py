@@ -13,14 +13,42 @@ class LausekkeenTarkistus():
         Args:
             lauseke (merkkijono): tarkistettava lauseke
         """
+        lauseke = lauseke.replace(" ", "")
+        lauseke = lauseke.replace("**", "^")
         if "=" in lauseke:
             return self._tarkista_muuttujan_lisays(lauseke)
         if not (self._tarkista_sulut(lauseke) and self._tarkista_desimaalipisteet(lauseke) and self._tarkista_lausekkeen_jarjestys(lauseke)):
             return False
-        return True
+        lauseke = self._muunna_listaksi(lauseke)
+        return lauseke
+
+    def _muunna_listaksi(self, lauseke):
+        merkkijono = ""
+        uusi_lauseke = []
+        edellinen_merkki = ""
+
+        for merkki in lauseke:
+            if (merkki not in self.numerot and edellinen_merkki == "numero") or (merkki not in self.kirjaimet and edellinen_merkki == "kirjain"):
+                uusi_lauseke.append(merkkijono)
+                merkkijono = ""
+
+            if merkki in self.numerot:
+                merkkijono += merkki
+                edellinen_merkki = "numero"
+            elif merkki in self.kirjaimet:
+                merkkijono += merkki
+                edellinen_merkki = "kirjain"
+            elif merkki in self.operaattorit:
+                uusi_lauseke.append(merkki)
+                edellinen_merkki = "operaattori"
+        if edellinen_merkki == "numero":
+            uusi_lauseke.append(merkkijono)
+        elif edellinen_merkki == "kirjain":
+            uusi_lauseke.append(merkkijono)
+        print(uusi_lauseke)
+        return uusi_lauseke
 
     def _tarkista_lausekkeen_jarjestys(self, lauseke):
-        lauseke = lauseke.replace("**", "^")
         edellinen_merkki = ""
         for merkki in lauseke:
             if merkki not in self.numerot and merkki not in self.kirjaimet and merkki not in self.operaattorit:

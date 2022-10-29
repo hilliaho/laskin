@@ -45,8 +45,6 @@ class Laskutoimitukset():
             if -0.0000000001 < tulos < 0.0000000001:
                 return 0
             return tulos
-        except IndexError:
-            return "virheellinen syöte"
         except TypeError:
             return "virheellinen syöte"
 

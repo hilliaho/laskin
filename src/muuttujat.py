@@ -16,6 +16,4 @@ class Muuttujat():
         return False
 
     def arvo(self, nimi):
-        if str(nimi) in self.muuttujat:
-            return self.muuttujat[nimi]
-        return False
+        return self.muuttujat[nimi]

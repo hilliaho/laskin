@@ -34,50 +34,15 @@ class Laskin():
         while True:
             self.muuttujat.lisaa_muuttuja(['pi', '=', str(math.pi)])
             lauseke = self.kayttoliittyma.syote()
-            if self.lausekkeen_tarkistus.tarkista(lauseke) is False:
-                self.kayttoliittyma.virheviesti()
-                continue
             if lauseke == "-1":
                 break
-
-            lauseke = self._lausekkeen_muunto(lauseke)
-            if "=" in lauseke:
-                self.muuttujat.lisaa_muuttuja(lauseke)
+            tarkistettu_lauseke = self.lausekkeen_tarkistus.tarkista(lauseke)
+            if tarkistettu_lauseke is False:
+                self.kayttoliittyma.virheviesti()
+                continue
+            if "=" in tarkistettu_lauseke:
+                self.muuttujat.lisaa_muuttuja(tarkistettu_lauseke)
                 continue
             postfix_lauseke = self.shunting_yard.muunna(lauseke)
             self.kayttoliittyma.tulos(
                 self.laskutoimitukset.laske(postfix_lauseke))
-
-    def _lausekkeen_muunto(self, lauseke):
-        lauseke = lauseke.replace(" ", "")
-        lauseke = lauseke.replace("**", "^")
-        merkkijono = ""
-        uusi_lauseke = []
-        edellinen_merkki = ""
-
-        for merkki in lauseke:
-            if merkki not in self.numerot and edellinen_merkki == "numero":
-                uusi_lauseke.append(merkkijono)
-                merkkijono = ""
-            elif merkki not in self.kirjaimet and edellinen_merkki == "kirjain":
-                if merkkijono in ("sin", "cos", "tan"):
-                    uusi_lauseke.append(merkkijono)
-                else:
-                    uusi_lauseke.append(merkkijono)
-                merkkijono = ""
-
-            if merkki in self.numerot:
-                merkkijono += merkki
-                edellinen_merkki = "numero"
-            elif merkki in self.kirjaimet:
-                merkkijono += merkki
-                edellinen_merkki = "kirjain"
-            elif merkki in self.operaattorit:
-                uusi_lauseke.append(merkki)
-                edellinen_merkki = "operaattori"
-        if edellinen_merkki == "numero":
-            uusi_lauseke.append(merkkijono)
-        elif edellinen_merkki == "kirjain":
-            uusi_lauseke.append(merkkijono)
-
-        return uusi_lauseke

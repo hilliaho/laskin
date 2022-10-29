@@ -8,11 +8,11 @@ class TestiMuuttujat(unittest.TestCase):
         self.muuttujat = Muuttujat()
 
     def testi_muuttuja_tallentuu(self):
-        self.muuttujat.lisaa_muuttuja(['x','=','9.0'])
+        self.muuttujat.lisaa_muuttuja(['x', '=', '9.0'])
         self.assertEqual(self.muuttujat.muuttujat, {'x': 9.0})
 
     def testi_muuttuja_on_olemassa(self):
-        self.muuttujat.lisaa_muuttuja(['y','=','2'])
+        self.muuttujat.lisaa_muuttuja(['y', '=', '2'])
         self.assertEqual(self.muuttujat.onko_muuttuja_olemassa("y"), True)
 
     def testi_muuttuja_ei_ole_olemassa(self):

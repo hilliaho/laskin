@@ -14,12 +14,18 @@ class TestiLausekkeenTarkistus(unittest.TestCase):
             numerot, kirjaimet, operaattorit)
 
     def testi_hyvaksyttavat_lausekkeet(self):
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("sin(1.234+2)"), True)
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("7-8"), True)
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("-(1+2)*5"), True)
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("cos(9.345)-2.2"), True)
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("-2**5"), True)
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("-(1+(2*x)/6)-3"), True)
+        self.assertEqual(
+            self.lausekkeen_tarkistus.tarkista("sin(1.234+2)"), ['sin', '(', '1.234', '+', '2', ')'])
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista(
+            "7-8"), ['7', '-', '8'])
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista(
+            "-(1+2)*5"), ['-', '(', '1', '+', '2', ')', '*', '5'])
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista(
+            "cos(9.345)-2.2"), ['cos', '(', '9.345', ')', '-', '2.2'])
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista(
+            "-2**5"), ['-', '2', '^', '5'])
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista(
+            "-(1+(2*x)/16)-koira"), ['-', '(', '1', '+', '(', '2', '*', 'x', ')', '/', '16', ')', '-', 'koira'])
 
     def testi_tunnistamaton_merkki(self):
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("1,2"), False)
@@ -33,7 +39,8 @@ class TestiLausekkeenTarkistus(unittest.TestCase):
     def testi_virheelliset_lausekkeet(self):
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("1--2"), False)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("(.2+2)"), False)
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("(1+2)(3-4)"), False)
+        self.assertEqual(
+            self.lausekkeen_tarkistus.tarkista("(1+2)(3-4)"), False)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("5(4-2)1"), False)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("3.14.5"), False)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("1*(1+3"), False)
