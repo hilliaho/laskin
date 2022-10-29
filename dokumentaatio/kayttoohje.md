@@ -3,6 +3,7 @@
 ## Laskimen käyttö
 
 Syötä haluamasi lauseke ja paina Enter.
+
 Sulje ohjelma syöttämällä `-1`.
 
 ## Esimerkkejä sallituista syötteistä
