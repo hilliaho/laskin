@@ -4,7 +4,10 @@ class Muuttujat():
 
     def lisaa_muuttuja(self, lauseke):
         nimi = str(lauseke[0])
-        arvo = float(lauseke[2])
+        if "." in lauseke[2]:
+            arvo = float(lauseke[2])
+        else:
+            arvo = int(lauseke[2])
         self.muuttujat[nimi] = arvo
 
     def onko_muuttuja_olemassa(self, nimi):

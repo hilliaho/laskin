@@ -20,7 +20,7 @@ class Kayttoliittyma():
 
     def alkuviesti(self):
         print("___________________________________", "\n")
-        print("Tervetuloa käyttämään laskinta")
+        print("Syötä lauseke ja paina Enter")
         print("Sulje ohjelma komennolla -1")
         print("___________________________________")
 

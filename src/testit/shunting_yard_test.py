@@ -10,6 +10,8 @@ class TestiShuntingYard(unittest.TestCase):
         self.shunting_yard=ShuntingYard(numerot, kirjaimet)
 
     def testi_lausekkeen_muuntaminen_toimii_oikein(self):
-        lauseke = self.shunting_yard.muunna("3+4*(2-1)")
-        self.assertEqual(lauseke, ["3", "4", "2", "1", "-", "*", "+"])
+        self.assertEqual(self.shunting_yard.muunna(['3', '+', '4', '*', '(', '2', '-', '1', ')']), ["3", "4", "2", "1", "-", "*", "+"])
+        self.assertEqual(self.shunting_yard.muunna(['-', '(', '8', '-', '2', ')', '^', '2']), ['0', '8', '2', '-', '2', '^', '-'])
+        self.assertEqual(self.shunting_yard.muunna(['-', 'cos', '(', 'pi', ')', '-', '3', '/', '7']), ['0', 'pi', 'cos', '0', '-', '3', '7', '/', '-'])
+        self.assertEqual(self.shunting_yard.muunna(['(', '(', '2', '-', '3', ')', '^', '2', '-', '(', '3', '*', '1', ')', ')', '/', '4']), ['2', '3', '-', '2', '^', '3', '1', '*', '-', '4', '/'])
         

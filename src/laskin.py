@@ -1,9 +1,10 @@
+import math
+
 from kayttoliittyma import Kayttoliittyma
 from laskutoimitukset import Laskutoimitukset
 from shunting_yard import ShuntingYard
 from muuttujat import Muuttujat
 from lausekkeen_tarkistus import LausekkeenTarkistus
-import math
 
 
 class Laskin():
@@ -17,7 +18,7 @@ class Laskin():
         self.numerot = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
         self.kirjaimet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å", "a", "s",
                           "d", "f", "g", "h", "j", "k", "l", "ö", "ä", "z", "x", "c", "v",
-                           "b", "n", "m"]
+                          "b", "n", "m"]
         self.kayttoliittyma = Kayttoliittyma()
         self.muuttujat = Muuttujat()
         self.laskutoimitukset = Laskutoimitukset(
@@ -46,25 +47,24 @@ class Laskin():
             postfix_lauseke = self.shunting_yard.muunna(lauseke)
             self.kayttoliittyma.tulos(
                 self.laskutoimitukset.laske(postfix_lauseke))
-        
 
     def _lausekkeen_muunto(self, lauseke):
         lauseke = lauseke.replace(" ", "")
         lauseke = lauseke.replace("**", "^")
-        merkkijono=""
-        uusi_lauseke=[]
-        edellinen_merkki=""
+        merkkijono = ""
+        uusi_lauseke = []
+        edellinen_merkki = ""
 
         for merkki in lauseke:
             if merkki not in self.numerot and edellinen_merkki == "numero":
                 uusi_lauseke.append(merkkijono)
-                merkkijono=""
+                merkkijono = ""
             elif merkki not in self.kirjaimet and edellinen_merkki == "kirjain":
                 if merkkijono in ("sin", "cos", "tan"):
                     uusi_lauseke.append(merkkijono)
                 else:
                     uusi_lauseke.append(merkkijono)
-                merkkijono=""
+                merkkijono = ""
 
             if merkki in self.numerot:
                 merkkijono += merkki
@@ -80,13 +80,4 @@ class Laskin():
         elif edellinen_merkki == "kirjain":
             uusi_lauseke.append(merkkijono)
 
-        
         return uusi_lauseke
-
-            
-
-
-
-
-
-

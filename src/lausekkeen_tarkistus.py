@@ -21,18 +21,18 @@ class LausekkeenTarkistus():
 
     def _tarkista_lausekkeen_jarjestys(self, lauseke):
         lauseke = lauseke.replace("**", "^")
-        edellinen_merkki=""
+        edellinen_merkki = ""
         for merkki in lauseke:
             if merkki not in self.numerot and merkki not in self.kirjaimet and merkki not in self.operaattorit:
                 return False
-            if edellinen_merkki=="" or edellinen_merkki=="(":
-                if merkki == "." or not (merkki in self.kirjaimet or merkki in self.numerot or merkki =="(" or merkki =="-"):
+            if edellinen_merkki == "" or edellinen_merkki == "(":
+                if merkki == "." or not (merkki in self.kirjaimet or merkki in self.numerot or merkki == "(" or merkki == "-"):
                     return False
             elif edellinen_merkki == ")":
                 if merkki in self.numerot or merkki in self.kirjaimet or merkki == "(" or merkki == ".":
                     return False
             elif edellinen_merkki in self.operaattorit:
-                if merkki == "." or not (merkki in self.kirjaimet or merkki in self.numerot or merkki =="(" ):
+                if merkki == "." or not (merkki in self.kirjaimet or merkki in self.numerot or merkki == "("):
                     return False
             elif edellinen_merkki in self.numerot:
                 if merkki == "(":
@@ -40,12 +40,11 @@ class LausekkeenTarkistus():
             edellinen_merkki = merkki
         return True
 
-
     def _tarkista_muuttujan_lisays(self, lauseke):
-        lauseke=lauseke.split("=")
+        lauseke = lauseke.split("=")
         nimi = lauseke[0]
         arvo = lauseke[1]
-        if len(nimi)==0 or len(arvo)==0:
+        if len(nimi) == 0 or len(arvo) == 0:
             return False
         for merkki in arvo:
             if merkki not in self.numerot:
@@ -58,7 +57,7 @@ class LausekkeenTarkistus():
             if merkki == "(":
                 pino.append("(")
             elif merkki == ")":
-                if len(pino)==0:
+                if len(pino) == 0:
                     return False
                 pino.pop()
         if len(pino) != 0:
@@ -66,13 +65,12 @@ class LausekkeenTarkistus():
         return True
 
     def _tarkista_desimaalipisteet(self, lauseke):
-        desimaalipisteet=0
+        desimaalipisteet = 0
         for merkki in lauseke:
             if merkki not in self.numerot:
-                desimaalipisteet=0
+                desimaalipisteet = 0
             if merkki == ".":
                 desimaalipisteet += 1
             if desimaalipisteet > 1:
                 return False
         return True
-

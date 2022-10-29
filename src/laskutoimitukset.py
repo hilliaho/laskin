@@ -1,5 +1,6 @@
 import math
 
+
 class Laskutoimitukset():
     """Luokka, joka vastaa laskutoimituksista
     """
@@ -28,9 +29,9 @@ class Laskutoimitukset():
                     tulos = self._suorita_laskutoimitus(eka, toka, merkki)
                     pino.append(tulos)
                 elif merkki in ("sin", "cos", "tan", "asin", "acos", "atan"):
-                        luku = pino.pop()
-                        tulos = self._suorita_laskutoimitus(luku,0,merkki)
-                        pino.append(tulos)
+                    luku = pino.pop()
+                    tulos = self._suorita_laskutoimitus(luku, 0, merkki)
+                    pino.append(tulos)
                 elif merkki[0] in self.numerot:
                     if "." in merkki:
                         pino.append(float(merkki))
@@ -40,8 +41,13 @@ class Laskutoimitukset():
                     if self.muuttujat.onko_muuttuja_olemassa(merkki) is False:
                         return "virheellinen syöte"
                     pino.append(self.muuttujat.muuttujat[merkki])
-            return pino[-1]
+            tulos = pino[-1]
+            if -0.0000000001 < tulos < 0.0000000001:
+                return 0
+            return tulos
         except IndexError:
+            return "virheellinen syöte"
+        except TypeError:
             return "virheellinen syöte"
 
     def _suorita_laskutoimitus(self, luku_1, luku_2, operaattori):
@@ -57,12 +63,8 @@ class Laskutoimitukset():
             if operaattori == "^":
                 return luku_2**luku_1
             if operaattori == "sin":
-                if luku_1%math.pi==0:
-                    return 0
                 return math.sin(luku_1)
             if operaattori == "cos":
-                if luku_1%math.pi==math.pi/2:
-                    return 0
                 return math.cos(luku_1)
             if operaattori == "tan":
                 return math.tan(luku_1)
@@ -76,4 +78,3 @@ class Laskutoimitukset():
             return "virheellinen syöte"
         except ZeroDivisionError:
             return "virheellinen syöte"
-
