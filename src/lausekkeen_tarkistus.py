@@ -45,7 +45,6 @@ class LausekkeenTarkistus():
             uusi_lauseke.append(merkkijono)
         elif edellinen_merkki == "kirjain":
             uusi_lauseke.append(merkkijono)
-        print(uusi_lauseke)
         return uusi_lauseke
 
     def _tarkista_lausekkeen_jarjestys(self, lauseke):

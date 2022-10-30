@@ -17,9 +17,9 @@ class TestiLausekkeenTarkistus(unittest.TestCase):
         self.assertEqual(
             self.lausekkeen_tarkistus.tarkista("sin(1.234+2)"), ['sin', '(', '1.234', '+', '2', ')'])
         self.assertEqual(self.lausekkeen_tarkistus.tarkista(
-            "7-8"), ['7', '-', '8'])
+            "72-8"), ['72', '-', '8'])
         self.assertEqual(self.lausekkeen_tarkistus.tarkista(
-            "-(1+2)*5"), ['-', '(', '1', '+', '2', ')', '*', '5'])
+            "-(1+20.5)*5"), ['-', '(', '1', '+', '20.5', ')', '*', '5'])
         self.assertEqual(self.lausekkeen_tarkistus.tarkista(
             "cos(9.345)-2.2"), ['cos', '(', '9.345', ')', '-', '2.2'])
         self.assertEqual(self.lausekkeen_tarkistus.tarkista(
@@ -29,11 +29,11 @@ class TestiLausekkeenTarkistus(unittest.TestCase):
 
     def testi_tunnistamaton_merkki(self):
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("1,2"), False)
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("6%4"), False)
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista("6%40"), False)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("2<4"), False)
 
     def testi_muuttujan_lisays_hyvaksytaan(self):
-        self.assertEqual(self.lausekkeen_tarkistus.tarkista("x=2"), True)
+        self.assertEqual(self.lausekkeen_tarkistus.tarkista("x=252987"), True)
         self.assertEqual(self.lausekkeen_tarkistus.tarkista("a=23.456"), True)
 
     def testi_virheelliset_lausekkeet(self):

@@ -43,6 +43,6 @@ class Laskin():
             if "=" in tarkistettu_lauseke:
                 self.muuttujat.lisaa_muuttuja(tarkistettu_lauseke)
                 continue
-            postfix_lauseke = self.shunting_yard.muunna(lauseke)
+            postfix_lauseke = self.shunting_yard.muunna(tarkistettu_lauseke)
             self.kayttoliittyma.tulos(
                 self.laskutoimitukset.laske(postfix_lauseke))

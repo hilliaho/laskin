@@ -17,10 +17,10 @@ class TestiLaskutoimitukset(unittest.TestCase):
 
     def testi_peruslaskutoimitukset(self):
         self.assertEqual(self.laskutoimitukset.laske(['1', '2', '+']), 3)
-        self.assertEqual(self.laskutoimitukset.laske(['1', '2', '*']), 2)
+        self.assertEqual(self.laskutoimitukset.laske(['10', '2', '*']), 20)
         self.assertEqual(self.laskutoimitukset.laske(['1', '2', '/']), 0.5)
-        self.assertEqual(self.laskutoimitukset.laske(['1', '2', '-']), -1)
-        self.assertEqual(self.laskutoimitukset.laske(['1', '2', '^']), 1)
+        self.assertEqual(self.laskutoimitukset.laske(['1.0', '2', '-']), -1.0)
+        self.assertEqual(self.laskutoimitukset.laske(['1', '12', '^']), 1)
         self.assertEqual(self.laskutoimitukset.laske(
             ['1', '0', '/']), "virheellinen syöte")
 

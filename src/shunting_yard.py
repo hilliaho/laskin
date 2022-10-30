@@ -34,8 +34,11 @@ class ShuntingYard():
                     jono.append(pino[-1])
                     pino.pop()
             elif operandi in ("+", "-"):
-                if operandi == "-" and edellinen_operandi not in self.numerot and edellinen_operandi not in self.kirjaimet:
-                    jono.append("0")
+                if operandi == "-":
+                    if edellinen_operandi == "":
+                        jono.append("0")
+                    elif edellinen_operandi[0] not in self.numerot and edellinen_operandi not in self.kirjaimet:
+                        jono.append("0")
                 while True:
                     if len(pino) == 0:
                         break
